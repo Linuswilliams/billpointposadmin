@@ -602,7 +602,7 @@ function POSApplicationChart({ applications }) {
   }, [])
 
   return (
-    <Card className="col-span-4">
+    <Card className="col-span-4 overflow-scroll">
       <CardHeader>
         <CardTitle>POS Applications by State</CardTitle>
         <CardDescription>Distribution of POS applications across different states</CardDescription>
