@@ -547,7 +547,7 @@ function DashboardContent({users, applications, applicationPercentageChange, per
                   </Avatar>
                   <div className="ml-4 space-y-1">
                     <p className="text-sm font-medium leading-none">{app.fullName}</p>
-                    <p className="text-sm text-muted-foreground">{app.email}</p>
+                    <p className="text-sm text-muted-foreground capitalize">{`Just Bought ${app.posType} `}</p>
                   </div>
                   <Button variant={'outline'} onClick={() => viewDetailsOfApplication(app._id)} className="ml-auto font-medium">
                      Details
