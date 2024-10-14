@@ -1,4 +1,5 @@
 'use client'
+import { useAppSelector } from '@/hooks/useAppSelector'
 import { axios } from '@/lib/axios'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -6,6 +7,7 @@ import { useEffect } from 'react'
 
 export default function LoadingPage() {
   const router = useRouter()
+  const userData = useAppSelector(state => state.user.user)
 
   useEffect(() => {
     verifySession()
@@ -13,7 +15,7 @@ export default function LoadingPage() {
 
   const verifySession = async () => {
     try{
-      const response = await axios.get(`admin/session/favoronyechere@gmail.com`)
+      const response = await axios.get(`admin/session/${userData?.email}`)
 
       router.push('/dashboard')
 
@@ -21,6 +23,12 @@ export default function LoadingPage() {
     }
     catch(err){
       if(err.response.data.message === 'Session has expired'){
+        router.push('/login')
+      }
+      else if(err.response.data.message === 'No active session found'){
+        router.push('/login')
+      }
+      else if(err.response.data.message === 'Admin not found'){
         router.push('/login')
       }
       console.log(err)

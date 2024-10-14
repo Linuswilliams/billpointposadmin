@@ -72,6 +72,8 @@ import { toast } from "sonner"
 import { DetailsModal } from "@/components/application details/ApplicationDetails"
 import { DialogTrigger } from "@/components/ui/dialog"
 import Link from "next/link"
+import { useAppDispatch } from "@/hooks/useAppDispatch"
+import { getUserInfo } from "@/lib/redux/reducers/storeUserInfo"
 
 // Mock data
 // const notifications = [
@@ -149,6 +151,7 @@ export default function AdminDashboard() {
   const [notifications, setNotifications] = useState(null)
   const userData = useAppSelector(state => state.user.user)
   const router = useRouter()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if(notifications){
@@ -286,6 +289,7 @@ export default function AdminDashboard() {
         console.log(body)
         const response = await axios.post('admin/logout', body)
 
+        dispatch(getUserInfo(null))
         console.log(response.data)
 
         toast("Logged out successfully", {
