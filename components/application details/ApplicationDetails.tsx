@@ -61,17 +61,20 @@ export function DetailsModal({ application, isMainModalOpen, onOpenChange }: Det
                     <AvatarImage src={application?.imageUrl} alt={application?.fullName} />
                     <AvatarFallback>{application?.fullName[0]}</AvatarFallback>
                   </Avatar>
-                  
+                
+
+                  <div className="mt-6 ">
+                              
                   <div>
                     <h3 className="text-xl font-semibold">{application?.fullName}</h3>
-                    <Badge variant="secondary" className="mt-1">{application?.posType}</Badge>
                   </div>
-
-                  <div className="mt-6">
+                  <div className='mt-6 flex flex-col md:flex-row space-x-0 md:space-x-5 space-y-3 md:space-y-0'>
+             <Badge variant="secondary" className="">{application?.posType}</Badge>
                 <Button onClick={() => setIsImageModalOpen(true)} variant="outline">
                   <Receipt className="w-4 h-4 mr-2" />
                   View Payment Receipt
                 </Button>
+                </div>
               </div>
                 </div>
 
