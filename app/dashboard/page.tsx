@@ -75,37 +75,6 @@ import Link from "next/link"
 import { useAppDispatch } from "@/hooks/useAppDispatch"
 import { getUserInfo } from "@/lib/redux/reducers/storeUserInfo"
 
-// Mock data
-// const notifications = [
-//   { id: 1, message: "New application submitted by John Doe", read: false, time: "2 hours ago" },
-//   { id: 2, message: "Jane Smith's application approved", read: false, time: "4 hours ago" },
-//   { id: 3, message: "Payment processed for Bob's Garage", read: true, time: "1 day ago" },
-//   { id: 4, message: "New user account created: Alice Williams", read: true, time: "2 days ago" },
-//   { id: 5, message: "System update scheduled for next week", read: true, time: "3 days ago" },
-// ]
-
-const revenueData = [
-  { name: "Jan", value: 4000 },
-  { name: "Feb", value: 3000 },
-  { name: "Mar", value: 6000 },
-  { name: "Apr", value: 8000 },
-  { name: "May", value: 5000 },
-  { name: "Jun", value: 7000 },
-]
-
-const userActivityData = [
-  { name: "Mon", value: 20 },
-  { name: "Tue", value: 40 },
-  { name: "Wed", value: 30 },
-  { name: "Thu", value: 70 },
-  { name: "Fri", value: 50 },
-  { name: "Sat", value: 30 },
-  { name: "Sun", value: 20 },
-]
-
-const totalUsers = 1000
-const totalApplications = 250
-const totalRevenue = 50000
 
 const pageTransition = {
   type: "tween",
@@ -153,6 +122,33 @@ export default function AdminDashboard() {
   const router = useRouter()
   const dispatch = useAppDispatch()
 
+  
+  useEffect(() => {
+    verifySession()
+  }, [])
+
+  const verifySession = async () => {
+    try{
+      const response = await axios.get(`admin/session/${userData?.email}`)
+
+      router.push('/dashboard')
+
+      console.log(response.data)
+    }
+    catch(err){
+      if(err.response.data.message === 'Session has expired'){
+        router.push('/login')
+      }
+      else if(err.response.data.message === 'No active session found'){
+        router.push('/login')
+      }
+      else if(err.response.data.message === 'Admin not found'){
+        router.push('/login')
+      }
+      console.log(err)
+    }
+  }
+  
   useEffect(() => {
     if(notifications){
     const unreadCount = notifications?.filter((n) => !n.isRead).length
