@@ -20,7 +20,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false, // Disabling serializable check if necessary
-    }).concat(logger), // Add logger to the middleware
+    }), 
 });
 
 // Persistor for persistence gate

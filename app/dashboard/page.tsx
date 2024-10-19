@@ -144,7 +144,7 @@ export default function AdminDashboard() {
       else if(err.response.data.message === 'Admin not found'){
         router.push('/login')
       }
-      console.log(err)
+      // console.log(err)
     }
   }
   
@@ -152,7 +152,7 @@ export default function AdminDashboard() {
     if(notifications){
     const unreadCount = notifications?.filter((n) => !n.isRead).length
 
-    console.log(unreadCount)
+    // console.log(unreadCount)
     setUnreadNotifications(unreadCount)
     }
   }, [notifications])
@@ -181,6 +181,12 @@ export default function AdminDashboard() {
       ])
     }
     catch(err) {
+      toast("Something went wrong", {
+        action: {
+          label: "Cancel",
+          onClick: () => console.log("Undo"),
+        },
+      })
       console.log(err)
     }
   }
@@ -301,6 +307,12 @@ export default function AdminDashboard() {
     }
     catch(err){
         console.log(err)
+        toast("Failed to logout... Try again", {
+          action: {
+            label: "Cancel",
+            onClick: () => console.log("Undo"),
+          },
+        })
     }
     finally{
         setIsLoading(false)
