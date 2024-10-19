@@ -187,7 +187,7 @@ export default function AdminDashboard() {
           onClick: () => console.log("Undo"),
         },
       })
-      console.log(err)
+      // console.log(err)
     }
   }
 
@@ -223,7 +223,7 @@ export default function AdminDashboard() {
       setPercentageChange(percentageChange);
   
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   
@@ -257,7 +257,7 @@ export default function AdminDashboard() {
       setApplicationPercentageChange(percentageChange);
   
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -274,7 +274,7 @@ export default function AdminDashboard() {
       console.log(response.data)
     }
     catch(err){
-      console.log(err)
+      // console.log(err)
     }
    }
   
@@ -306,7 +306,7 @@ export default function AdminDashboard() {
         }, 1000);
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
         toast("Failed to logout... Try again", {
           action: {
             label: "Cancel",
