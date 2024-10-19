@@ -131,9 +131,8 @@ export default function AdminDashboard() {
     try{
       const response = await axios.get(`admin/session/${userData?.email}`)
 
-      router.push('/dashboard')
-
-      console.log(response.data)
+      
+      return
     }
     catch(err){
       if(err.response.data.message === 'Session has expired'){

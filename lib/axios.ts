@@ -1,5 +1,5 @@
 import axiosBase from 'axios'
 
 export const axios = axiosBase.create({
-    baseURL:'https://api.billpointpos.co/api/'
+    baseURL:'http://localhost:3001/api/'
 })
